@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import logging
 import random
 from typing import Dict, Any, List, Tuple, Optional
-from boto3.dynamodb.conditions import Key
+from boto3.dynamodb.conditions import Key, Attr
 import math
 
 # Only import pickle if needed to avoid potential conflicts
@@ -139,9 +139,9 @@ def get_historical_stream_data(content_id: str = None, content_type: str = None,
 
         user_interactions_table = dynamodb.Table(USER_INTERACTIONS_TABLE)
 
-        filter_expression = Key('interaction_type').eq('play')
+        filter_expression = Attr('interaction_type').eq('play')
         if content_id:
-            filter_expression = filter_expression & Key('content_id').eq(content_id)
+            filter_expression = filter_expression & Attr('content_id').eq(content_id)
 
         response = user_interactions_table.scan(
             FilterExpression=filter_expression,
