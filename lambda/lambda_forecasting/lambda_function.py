@@ -27,7 +27,7 @@ STREAM_HISTORY_TABLE = os.environ.get('STREAM_HISTORY_TABLE', 'StreamHistory')
 def calculate_mean(data: List[float]) -> float:
     """Calculate arithmetic mean."""
     return sum(data) / len(data) if data else 0
-
+    
 def calculate_stdev(data: List[float]) -> float:
     """Calculate sample standard deviation."""
     if len(data) < 2:
